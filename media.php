@@ -8,23 +8,49 @@
     $media = (double) 0;
 
     //Validação para tratar se o botão foi clicado
-    if(isset($_POST["btncalc"])) {
-        
+    if(isset($_POST["btncalc"])) 
+    {
         //Recebendo dados utilizando o POST do formulario
         $nota1 = $_POST ["txtn1"];
         $nota2 = $_POST ["txtn2"];
         $nota3 = $_POST ["txtn3"];
         $nota4 = $_POST ["txtn4"];
+     
+            //Operadores Lógicos
+                //OU - or, ||
+                //E - and, &
+                //Negação, !
 
-        //Realizando o calculo da média
-        $media = ($nota1 + $nota2 + $nota3 + $nota4) / 4;
+            /*  is_numeric() - permite validar se o conteúdo é um número
+                is_string() - permite validar se o conteúdo é uma string
+                is_integer() - permite validar se o conteúdo é um inteiro
+                is_double() ou is_float() - permite validar se o conteúdo é um número quebrado
+                is_array() - permite validar se o conteúdo é um vetor ou uma matriz
+                is_bool() - permite validar se o conteúdo é um booleano
+                ... e outras opções de validação
+            */
+
+            //Tratamento de erro para validação de caixa vazia
+            if($_POST["txtn1"] == "" || $_POST["txtn2"] == "" || $_POST["txtn3"] == "" || $_POST["txtn4"] == "")
+            {
+                echo("<p class='msgErro'>Verificar se todas as notas foram preenchidas!</p>");
+            }else
+            {   
+                //Tratamento de erro para validção de caracteres não n
+                if(!is_numeric($nota1) || !is_numeric($nota2) || !is_numeric($nota3) || !is_numeric($nota4))
+                {
+                    echo("<p class='msgErro'>Todos os valores digitados devem ser números válidos!</p>");
+                }else
+                {
+                    //Realizando o calculo da média
+                    $media = ($nota1 + $nota2 + $nota3 + $nota4) / 4;  
+                }
+            
+           
+            }
+        
     }
-    
-
-    
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-BR">
